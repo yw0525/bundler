@@ -2,11 +2,13 @@
 
 import React from 'react'
 import { createRoot  } from 'react-dom/client'
+import App from './app'
 
-import './style.scss'
-
-const Search = () => <div className="text">Hello React</div>
+setTimeout(() => {
+  // source map testing
+  throw new Error('sssssssssssssssssss')
+}, 2000);
 
 createRoot(
   document.getElementById('app')
-).render(<Search />)
+).render(<App />)

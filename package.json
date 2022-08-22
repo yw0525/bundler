@@ -1,5 +1,5 @@
 {
-  "name": "bundler",
+  "name": "bundler-config",
   "private": "true",
   "version": "0.0.0",
   "description": "module bundler",
@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "heora",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/yw0525/bundler/issues"
   },

@@ -31,6 +31,7 @@ importers:
       webpack: 4.x
       webpack-cli: 4.x
       webpack-dev-server: 3.x
+      webpack-merge: ^5.8.0
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -57,6 +58,7 @@ importers:
       webpack: 4.46.0_webpack-cli@4.10.0
       webpack-cli: 4.10.0_9c6227b1f4ab411ec71902ed1b15f9d5
       webpack-dev-server: 3.11.3_196e681456f11e809d8928f4499c300a
+      webpack-merge: 5.8.0
 
 packages:
 

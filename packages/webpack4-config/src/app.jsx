@@ -1,4 +1,4 @@
-import {  useState } from 'react'
+import React, { useState } from 'react'
 import Avator from './avator.jpg'
 
 import './styles.scss'

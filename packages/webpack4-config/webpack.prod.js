@@ -1,61 +1,15 @@
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackExternals = require('html-webpack-externals-plugin')
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const { merge } = require('webpack-merge')
 
-module.exports = {
+const baseConfig = require('./webpack.base')
+
+module.exports = merge(baseConfig, {
   mode: 'production',
-  stats: 'errors-only',
-  entry: {
-    index: './src/index.js',
-    index02: './src/index02.js'
-  },
   output: {
     filename: '[name]_[chunkhash:8].js',
     path: path.resolve(__dirname, 'dist')
-  },
-  module: {
-    rules: [
-      {
-        test: /.js$/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.(png|jpg|gif|jpeg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name]_[hash:8].[ext]',
-              limit: 10240
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name]_[hash:8].[ext]'
-            },
-          }
-        ]
-      }
-    ]
   },
   optimization: {
     splitChunks: {
@@ -78,10 +32,6 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name]_[contenthash:8].css'
-    }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
@@ -99,34 +49,6 @@ module.exports = {
           global: 'ReactDOM'
         }
       ]
-    }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html'),
-      filename: 'index.html',
-      chunks: ['index'],
-      excludeChunks: ['node_modules'],
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: false,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: false
-      }
-    }),
-    new FriendlyErrorsWebpackPlugin(),
-    function (params) {
-      this.hooks.done.tap('done', (stats) => {
-        if (
-            stats.compilation.errors && 
-            stats.compilation.errors.length && 
-            process.argv.indexOf('--watch') == -1
-          ) {
-          console.log('webpack build error');
-          process.exit(1);
-        }
-      })
-    }
+    })
   ]
-}
+})

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "build:stats": "webpack --config webpack.prod.js --stats normal --json > stats.json"
+    "build:stats": "webpack --config webpack.prod.js --stats normal --json > stats.json",
+    "dll": "webpack --config webpack.dll.js"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +36,8 @@
     "sass-loader": "10.x",
     "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "2.0.0",
+    "terser-webpack-plugin": "4.x",
+    "thread-loader": "^3.0.4",
     "url-loader": "^4.1.1",
     "webpack": "4.x",
     "webpack-bundle-analyzer": "^4.6.1",

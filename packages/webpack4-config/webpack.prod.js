@@ -1,9 +1,11 @@
 const path = require('path')
+const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackExternals = require('html-webpack-externals-plugin')
 const SpeedMesaureWebpackPlugin = require('speed-measure-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const baseConfig = require('./webpack.base')
@@ -18,7 +20,7 @@ const config = merge(baseConfig, {
     splitChunks: {
       minSize: 0,
       cacheGroups: {
-        // use externals replace splitChunks with vendors
+        // eg: use externals replace splitChunks with vendors
         // vendors: {
         //   test: /(react|react-dom)/,
         //   name: 'vendors',
@@ -32,13 +34,38 @@ const config = merge(baseConfig, {
           priority: -20
         }
       }
-    }
+    },
+    // minimizer: [
+    //   new TerserWebpackPlugin({
+    //     parallel: true
+    //   })
+    // ]
+  },
+  module: {
+    rules: [
+      {
+        test: /.(js|jsx)$/,
+        use: [
+          // {
+          //   loader: 'thread-loader',
+          //   options: {
+          //     workers: 3
+          //   }
+          // },
+          'babel-loader'
+        ]
+      }
+    ]
   },
   plugins: [
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
     }),
+    // eg: use externals replace dll reference plugin
+    // new webpack.DllReferencePlugin({
+    //   manifest: require('./build/library/library.json')
+    // }),
     new HtmlWebpackExternals({
       externals: [
         {

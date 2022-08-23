@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -53,12 +54,14 @@ module.exports = {
         minifyJS: true,
         removeComments: false
       }
-    })
+    }),
+    new FriendlyErrorsWebpackPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
-    hot: true
+    hot: true,
+    stats: 'errors-only'
   }
 }

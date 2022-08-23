@@ -4,9 +4,11 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackExternals = require('html-webpack-externals-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = {
   mode: 'production',
+  stats: 'errors-only',
   entry: {
     index: './src/index.js',
     index02: './src/index02.js'
@@ -112,6 +114,19 @@ module.exports = {
         minifyJS: true,
         removeComments: false
       }
-    })
+    }),
+    new FriendlyErrorsWebpackPlugin(),
+    function (params) {
+      this.hooks.done.tap('done', (stats) => {
+        if (
+            stats.compilation.errors && 
+            stats.compilation.errors.length && 
+            process.argv.indexOf('--watch') == -1
+          ) {
+          console.log('webpack build error');
+          process.exit(1);
+        }
+      })
+    }
   ]
 }

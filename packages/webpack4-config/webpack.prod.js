@@ -1,11 +1,14 @@
 const path = require('path')
+const { merge } = require('webpack-merge')
+
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackExternals = require('html-webpack-externals-plugin')
-const { merge } = require('webpack-merge')
+const SpeedMesaureWebpackPlugin = require('speed-measure-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const baseConfig = require('./webpack.base')
 
-module.exports = merge(baseConfig, {
+const config = merge(baseConfig, {
   mode: 'production',
   output: {
     filename: '[name]_[chunkhash:8].js',
@@ -49,6 +52,9 @@ module.exports = merge(baseConfig, {
           global: 'ReactDOM'
         }
       ]
-    })
+    }),
+    // new BundleAnalyzerPlugin()
   ]
 })
+
+module.exports = new SpeedMesaureWebpackPlugin().wrap(config)

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "build:stats": "webpack --config webpack.prod.js --stats normal --json > stats.json"
   },
   "keywords": [],
   "author": "",
@@ -32,9 +33,11 @@
     "postcss-loader": "4.x",
     "sass": "^1.54.5",
     "sass-loader": "10.x",
+    "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "2.0.0",
     "url-loader": "^4.1.1",
     "webpack": "4.x",
+    "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "4.x",
     "webpack-dev-server": "3.x",
     "webpack-merge": "^5.8.0"

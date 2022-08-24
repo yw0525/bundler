@@ -3,7 +3,10 @@
   "private": "true",
   "version": "0.0.0",
   "description": "module bundler",
-  "scripts": {},
+  "scripts": {
+    "cz": "git add ./ && git cz",
+    "postcz": "git push"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yw0525/bundler.git"
@@ -14,5 +17,14 @@
   "bugs": {
     "url": "https://github.com/yw0525/bundler/issues"
   },
-  "homepage": "https://github.com/yw0525/bundler#readme"
+  "homepage": "https://github.com/yw0525/bundler#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0"
+  }
 }

@@ -54,3 +54,6 @@ fetch(url)
     }
   })
   
+
+// eg：souce map testing
+console.log2('source map')

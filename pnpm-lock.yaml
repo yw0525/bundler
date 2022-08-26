@@ -99,7 +99,6 @@ importers:
       '@babel/core': ^7.18.13
       '@babel/preset-env': ^7.18.10
       babel-loader: ^8.2.5
-      clean-webpack-plugin: ^4.0.0
       copy-webpack-plugin: ^11.0.0
       css-loader: ~6.7.1
       html-webpack-plugin: ^5.5.0
@@ -112,7 +111,6 @@ importers:
       '@babel/core': 7.18.13
       '@babel/preset-env': 7.18.10_@babel+core@7.18.13
       babel-loader: 8.2.5_987cc70bded3fa81b046dafa8784ef98
-      clean-webpack-plugin: 4.0.0_webpack@5.74.0
       copy-webpack-plugin: 11.0.0_webpack@5.74.0
       css-loader: 6.7.1_webpack@5.74.0
       html-webpack-plugin: 5.5.0_webpack@5.74.0
@@ -3933,16 +3931,6 @@ packages:
     dependencies:
       del: 4.1.1
       webpack: 4.46.0_webpack-cli@4.10.0
-    dev: true
-
-  /clean-webpack-plugin/4.0.0_webpack@5.74.0:
-    resolution: {integrity: sha512-WuWE1nyTNAyW5T7oNyys2EN0cfP2fdRxhxnIQWiAp0bMabPdHhoGxM8A6YL2GhqwgrPnnaemVE7nv5XJ2Fhh2w==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      webpack: '>=4.0.0 <6.0.0'
-    dependencies:
-      del: 4.1.1
-      webpack: 5.74.0_webpack-cli@4.10.0
     dev: true
 
   /cli-cursor/3.1.0:

@@ -1,10 +1,10 @@
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
+    clean: true, // replace clean-webpack-plugin
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
@@ -38,7 +38,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: '月落 - Web Developer & JS Fancier',
       meta: {

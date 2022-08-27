@@ -5,7 +5,6 @@ const webpack = require('webpack')
 module.exports = {
   entry: './src/main.js',
   output: {
-    clean: true, // replace clean-webpack-plugin
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
@@ -22,10 +21,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -42,7 +38,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: '月落 - Web Developer & JS Fancier',
       meta: {
-        keywords: '月落,博客,月落博客,个人博客,月落个人博客,个人网站,程序员,程序员博客,程序员个人博客',
+        keywords:
+          '月落,博客,月落博客,个人博客,月落个人博客,个人网站,程序员,程序员博客,程序员个人博客',
         description: '月落个人博客，记载前端学习历程。'
       },
       favicon: './public/favicon.ico',
